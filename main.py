@@ -1,3 +1,15 @@
+import os
+from pathlib import Path
+
+def create_folder():
+    try:
+        name = input("Please enter name of your folder: ")
+        p = Path(name)
+        p.mkdir() 
+        print("Folder created successfully! ✅")
+    except Exception as err:
+        print(f"Sorry an error occured as {err}")
+
 print("Options : ")
 
 print("1. Create a folder")
@@ -8,7 +20,7 @@ print("4. Delete the folder")
 choice = int(input("Please enter your option: "))
 
 if choice == 1:
-    print("Choice 01")
+    create_folder()
 elif choice == 2:
     print("Choice 02")
 elif choice == 3:
