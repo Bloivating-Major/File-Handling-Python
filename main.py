@@ -16,6 +16,19 @@ def read_file_folder():
     for index, item in enumerate(items):
         print(f"{index+1}. {item}")
     
+def update_folder():
+    try:
+        read_file_folder()
+        old_name = input("Please tell which folder you want to update: ")
+        p = Path(old_name)
+        if p.exists() and p.is_dir():
+            new_name = input("Please tell your new folder name: ")
+            new_p = Path(new_name)
+            p.rename(new_p)
+            print("Your folder name was updated successfully! ✅")
+    except Exception as err:
+        print(f"Sorry an error occured as {err}")
+        
 
 print("Options : ")
 
@@ -31,7 +44,7 @@ if choice == 1:
 elif choice == 2:
     read_file_folder()
 elif choice == 3:
-    print("Choice 03")
+    update_folder()
 elif choice == 4:
     print("Choice 04")
 else :
