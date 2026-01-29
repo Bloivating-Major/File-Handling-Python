@@ -28,6 +28,19 @@ def update_folder():
             print("Your folder name was updated successfully! ✅")
     except Exception as err:
         print(f"Sorry an error occured as {err}")
+
+def delete_folder():
+    try:
+        read_file_folder()
+        name = input("Please tell which folder you want to delete: ")
+        p = Path(name)
+        if p.exists() and p.is_dir():
+            p.rmdir()
+            print("Your folder was deleted successfully! ✅")
+        else:
+            print("No such folder exist!")    
+    except Exception as err:
+        print(f"Sorry an error occured as {err}")
         
 
 print("Options : ")
@@ -46,6 +59,6 @@ elif choice == 2:
 elif choice == 3:
     update_folder()
 elif choice == 4:
-    print("Choice 04")
+    delete_folder()
 else :
     print("Invalid Choice!!!\nPlease enter valid number!\nExample : 1")
