@@ -42,6 +42,17 @@ def delete_folder():
     except Exception as err:
         print(f"Sorry an error occured as {err}")
         
+def create_file():
+    print("Create File")
+    
+def read_file():
+    print("Read File")
+
+def update_file():
+    print("Update File")
+    
+def delete_file():
+    print("Delete File")
 
 print("Options : ")
 
@@ -49,6 +60,10 @@ print("1. Create a folder")
 print("2. Read files and folders")
 print("3. Update the folder")
 print("4. Delete the folder")
+print("5. Create a File")
+print("6. Read a File")
+print("7. Update a File")
+print("8. Delete a File")
 
 choice = int(input("Please enter your option: "))
 
@@ -59,6 +74,14 @@ elif choice == 2:
 elif choice == 3:
     update_folder()
 elif choice == 4:
+    delete_folder()
+elif choice == 5:
+    delete_folder()
+elif choice == 6:
+    delete_folder()
+elif choice == 7:
+    delete_folder()
+elif choice == 8:
     delete_folder()
 else :
     print("Invalid Choice!!!\nPlease enter valid number!\nExample : 1")
