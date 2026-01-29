@@ -9,6 +9,13 @@ def create_folder():
         print("Folder created successfully! ✅")
     except Exception as err:
         print(f"Sorry an error occured as {err}")
+        
+def read_file_folder():
+    p = Path("")
+    items = list(p.rglob("*"))
+    for index, item in enumerate(items):
+        print(f"{index+1}. {item}")
+    
 
 print("Options : ")
 
@@ -22,7 +29,7 @@ choice = int(input("Please enter your option: "))
 if choice == 1:
     create_folder()
 elif choice == 2:
-    print("Choice 02")
+    read_file_folder()
 elif choice == 3:
     print("Choice 03")
 elif choice == 4:
