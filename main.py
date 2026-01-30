@@ -57,7 +57,6 @@ def create_file():
     except Exception as err:
         print(f"Sorry an error occured as {err}")
 
-    
 def read_file():
     try:
         read_file_folder()
@@ -108,7 +107,17 @@ def update_file():
         print(f"Sorry an error occured as {err}")
     
 def delete_file():
-    print("Delete File")
+    try:
+        read_file_folder()
+        name = input("Tell your file name with extension: ")
+        p = Path(name)
+        if p.exists() and p.is_file():
+            p.unlink()
+            print("File deleted successfully! ✅")
+        else:
+            print("No such file exist!")
+    except Exception as err:
+        print(f"Sorry an error occured as {err}")
 
 print("Options : ")
 
