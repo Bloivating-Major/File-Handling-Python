@@ -59,7 +59,19 @@ def create_file():
 
     
 def read_file():
-    print("Read File")
+    try:
+        read_file_folder()
+        name = input("Please enter your file name: ")
+        p = Path(name)
+        if p.exists() and p.is_file():
+            with open(p, "r") as fs:
+                content = fs.read()
+                print("Your file content is : ")
+                print(content)
+        else:
+            print("Sorry no such file exist")
+    except Exception as err:
+        print(f"Sorry an error occured as {err}")
 
 def update_file():
     print("Update File")
