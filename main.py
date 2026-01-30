@@ -74,7 +74,38 @@ def read_file():
         print(f"Sorry an error occured as {err}")
 
 def update_file():
-    print("Update File")
+    try:
+        read_file_folder()
+        name = input("Please tell your file name: ")
+        p = Path(name)
+        if p.exists() and p.is_file():
+            print("Options : ")
+            print("1. For renaming the file")
+            print("2. For appending something in the file")
+            print("3. For overwriting the file content")
+            choice = int(input("Tell your choice: "))
+            if choice == 1:
+                new_name = input("Tell your new name with extension: ")
+                new_p = Path(new_name)
+                if not new_p.exists():
+                    p.rename(new_p)
+                    print("Your file name has changed successfully! ✅")
+                else:
+                    print(f"Sorry the file with new {new_name} already exist!")
+            elif choice == 2:
+                with open(p, "a") as fs:
+                    data = input("What you want to append?\n")
+                    fs.write(" "+data)
+                print("Data appended successfully! ✅")
+            elif choice == 3:
+                with open(p, "w") as fs:
+                    data = input("What you want to overwrite?\n")
+                    fs.write(data)
+                print("Data overwritten successfully! ✅") 
+        else:
+            print("No such file exist!")
+    except Exception as err:
+        print(f"Sorry an error occured as {err}")
     
 def delete_file():
     print("Delete File")
