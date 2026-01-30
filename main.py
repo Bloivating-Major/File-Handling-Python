@@ -43,7 +43,20 @@ def delete_folder():
         print(f"Sorry an error occured as {err}")
         
 def create_file():
-    print("Create File")
+    try:
+        read_file_folder()
+        name = input("Please tell your file name: ")
+        p = Path(name)
+        if not p.exists():
+            with open(p, "w") as fs:
+                data = input("Write what you want in this file: ")
+                fs.write(data)
+            print("Your file was created successfully! ✅")
+        else :
+            print("Sorry this file name already exist!")
+    except Exception as err:
+        print(f"Sorry an error occured as {err}")
+
     
 def read_file():
     print("Read File")
@@ -76,12 +89,12 @@ elif choice == 3:
 elif choice == 4:
     delete_folder()
 elif choice == 5:
-    delete_folder()
+    create_file()
 elif choice == 6:
-    delete_folder()
+    read_file()
 elif choice == 7:
-    delete_folder()
+    update_file()
 elif choice == 8:
-    delete_folder()
+    delete_file()
 else :
     print("Invalid Choice!!!\nPlease enter valid number!\nExample : 1")
