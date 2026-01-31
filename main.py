@@ -1,4 +1,4 @@
-import os
+import shutil
 from pathlib import Path
 
 def create_folder():
@@ -13,8 +13,11 @@ def create_folder():
 def read_file_folder():
     p = Path("")
     items = list(p.rglob("*"))
+    if not items:
+        print("📂 No files or folders found.")
+        return
     for index, item in enumerate(items):
-        print(f"{index+1}. {item}")
+        print(f"{index+1}. {'📁' if item.is_dir() else '📄'} {item}")
     
 def update_folder():
     try:
@@ -26,6 +29,8 @@ def update_folder():
             new_p = Path(new_name)
             p.rename(new_p)
             print("Your folder name was updated successfully! ✅")
+        else:
+            print("No such folder exist!")
     except Exception as err:
         print(f"Sorry an error occured as {err}")
 
@@ -35,7 +40,7 @@ def delete_folder():
         name = input("Please tell which folder you want to delete: ")
         p = Path(name)
         if p.exists() and p.is_dir():
-            p.rmdir()
+            shutil.rmtree(p)
             print("Your folder was deleted successfully! ✅")
         else:
             print("No such folder exist!")    
@@ -101,8 +106,6 @@ def update_file():
                     data = input("What you want to overwrite?\n")
                     fs.write(data)
                 print("Data overwritten successfully! ✅") 
-        else:
-            print("No such file exist!")
     except Exception as err:
         print(f"Sorry an error occured as {err}")
     
@@ -119,34 +122,45 @@ def delete_file():
     except Exception as err:
         print(f"Sorry an error occured as {err}")
 
-print("Options : ")
+while True:
+    print("\n\n======================")
+    print("Options : ")
+    print("======================\n\n")
 
-print("1. Create a folder")
-print("2. Read files and folders")
-print("3. Update the folder")
-print("4. Delete the folder")
-print("5. Create a File")
-print("6. Read a File")
-print("7. Update a File")
-print("8. Delete a File")
+    print("1. Create a folder")
+    print("2. Read files and folders")
+    print("3. Update the folder")
+    print("4. Delete the folder")
+    print("5. Create a File")
+    print("6. Read a File")
+    print("7. Update a File")
+    print("8. Delete a File")
+    print("0. Exit the Program")
 
-choice = int(input("Please enter your option: "))
+    try:
+        choice = int(input("Please enter your option: "))
 
-if choice == 1:
-    create_folder()
-elif choice == 2:
-    read_file_folder()
-elif choice == 3:
-    update_folder()
-elif choice == 4:
-    delete_folder()
-elif choice == 5:
-    create_file()
-elif choice == 6:
-    read_file()
-elif choice == 7:
-    update_file()
-elif choice == 8:
-    delete_file()
-else :
-    print("Invalid Choice!!!\nPlease enter valid number!\nExample : 1")
+        if choice == 1:
+            create_folder()
+        elif choice == 2:
+            read_file_folder()
+        elif choice == 3:
+            update_folder()
+        elif choice == 4:
+            delete_folder()
+        elif choice == 5:
+            create_file()
+        elif choice == 6:
+            read_file()
+        elif choice == 7:
+            update_file()
+        elif choice == 8:
+            delete_file()
+        elif choice == 0:
+            print("Program Exited Successfully! ✅")
+            break
+        else :
+            print("Invalid Choice!!!\nPlease enter valid number!\nExample : 1")
+    except ValueError:
+        print("Invalid input! Please enter a number.")
+        continue
